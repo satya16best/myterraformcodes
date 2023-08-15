@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.10.0"
+    }
+  }
+}
+
+provider "aws" {
+   region  = "us-east-1"
+   access_key = "AKIAVKUWG5TSXEZKFY3S"
+  secret_key = "zPx2/XaM6HnzUmPW9zm9mlECZEoUaLvsT/vvT5k8"
+}
+
+
+resource "aws_vpc" "example" {
+  cidr_block = "10.0.0.0/16"
+}

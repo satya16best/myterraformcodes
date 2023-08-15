@@ -1,0 +1,20 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.10.0"
+    }
+  }
+}
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAY5B2KQTQU63QHIH6"
+  secret_key = "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"
+}
+
+
+resource "aws_instance" "myec2" {
+   ami = "ami-08a52ddb321b32a8c"
+   instance_type = var.instancetype
+}

@@ -1,0 +1,23 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.10.0"
+    }
+  }
+}
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAZM6YJ6MZEKPH5QMF"
+  secret_key = "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"
+}
+
+resource "aws_instance" "automated" {
+    ami = "ami-0f34c5ae932e6f0e4"
+    instance_type = "t2.micro"
+
+    tags = {
+    Name = "first automated ec2"
+  }    
+}

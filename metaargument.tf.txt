@@ -1,0 +1,20 @@
+
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAWSLBRN7FHASVW5XN"
+  secret_key = "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"
+}
+
+resource "aws_instance" "myec2" {
+    ami = "ami-0fc682b2a42e57ca2"
+    instance_type = "t2.micro"
+
+    tags = {
+        Name = "Satya"
+    }
+
+lifecycle {
+        ignore_changes = [tags]
+    }
+}

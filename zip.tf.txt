@@ -1,0 +1,22 @@
+
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAT52UCTQEEU42V7EA"
+  secret_key = "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"
+}
+
+resource "aws_iam_user" "lb" {
+  name = "demo-user.${count.index}"
+  count = 3
+  path = "/system/"
+}
+
+output "arns" {
+  value = aws_iam_user.lb[*].arn
+}
+
+
+output "zipmap" {
+  value = zipmap(aws_iam_user.lb[*].name, aws_iam_user.lb[*].arn)
+}

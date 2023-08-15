@@ -1,0 +1,27 @@
+
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAUOI44JPQ75UZCICS"
+  secret_key = "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"
+}
+
+  resource "aws_instance" "myec2" {
+   ami = "ami-08a52ddb321b32a8c"
+   instance_type = "t2.micro"
+   key_name = "terraform-key"
+
+ provisioner "remote-exec" {
+   inline = [
+     "sudo amazon-linux-extras install -y nginx1",
+     "sudo systemctl start nginx"
+   ]
+   connection {
+   type     = "ssh"
+   host     = self.public_ip
+   user     = "ec2-user"
+   private_key = "${file("./terraform-key.pem")}"
+   
+  }
+ }
+}

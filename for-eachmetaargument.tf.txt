@@ -1,0 +1,12 @@
+
+
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAUOI44JPQ75UZCICS"
+  secret_key = "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"
+}
+
+resource "aws_iam_user" "iam" {
+  for_each = toset( ["user-01","user-02", "user-03"] )
+  name     = each.key
+}
